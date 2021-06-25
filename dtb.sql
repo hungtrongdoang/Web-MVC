@@ -9,7 +9,7 @@ CREATE TABLE LAPTOP
 (
 	MALAPTOP INT IDENTITY(1,1),
 	TENLAPTOP NVARCHAR(100) NOT NULL,
-	MAHANG INT IDENTITY(1,1),
+	MAHANG INT,
 
 	CPU NVARCHAR(50) NOT NULL,
 	RAM NVARCHAR(50) NOT NULL,
@@ -63,12 +63,46 @@ CREATE TABLE DONDATHANG
 	CONSTRAINT PK_DonDatHang PRIMARY KEY(MaDonHang)
 )
 GO
-CREATE TABLE CHITIETDONTHANG
+CREATE TABLE CHITIETDONHANG
 (
 	MaDonHang INT,
-	Masach INT,
+	MALAPTOP INT,
 	Soluong Int Check(Soluong>0),
 	Dongia Decimal(18,0) Check(Dongia>=0),	
-	CONSTRAINT PK_CTDatHang PRIMARY KEY(MaDonHang,Masach),
+	CONSTRAINT PK_CTDH PRIMARY KEY(MaDonHang,MALAPTOP),
 )
 GO
+drop table CHITIETDONTHANG
+
+
+
+----------------QUẢN TRỊ-----------------
+Create Table Admin
+(
+	UserAdmin varchar(30) primary key,
+	PassAdmin varchar(30) not null,
+	Hoten nVarchar(50)
+)
+Insert into Admin values('admin','123456',N'Hoàng Trọng Dũng')
+Insert into Admin values('user','123',N'Dũng')
+
+delete From Admin 
+Select * from Admin 
+
+----------------SHOW DATABASE------------------
+select * from HANG
+select * from LAPTOP
+select * from Admin
+select * from DONDATHANG
+select * from KHACHHANG
+select * from CHITIETDONHANG
+
+--------- Nhaplieu: CHITIETDONHANG ----------
+
+/****** DONDATHANG ******/
+
+INSERT DONDATHANG (MaKH, Dathanhtoan,Ngaydat,Ngaygiao,Tinhtranggiaohang) 
+VALUES ( 1,0, '10/15/2115', '10/20/2015',0)
+
+INSERT DONDATHANG (MaKH, Dathanhtoan,Ngaydat,Ngaygiao,Tinhtranggiaohang) 
+VALUES ( 3,0, '10/05/2114', '10/20/2014',0)
