@@ -2,9 +2,8 @@ use master
 create database QLLAPTOP
 GO
 use QLLAPTOP
-GO
-
-
+go
+------------------https://www.thegioididong.com/laptop----------------
 CREATE TABLE LAPTOP
 (
 	MALAPTOP INT IDENTITY(1,1),
