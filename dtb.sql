@@ -54,7 +54,7 @@ CREATE TABLE DONDATHANG
 (
 	MaDonHang INT IDENTITY(1,1),
 	Dathanhtoan bit,
-	Tinhtranggiaohang  bit,
+	Tinhtranggiaohang bit,
 	Ngaydat Datetime,
 	Ngaygiao Datetime,	
 	MaKH INT,
@@ -64,11 +64,11 @@ CREATE TABLE DONDATHANG
 GO
 CREATE TABLE CHITIETDONHANG
 (
-	MaDonHang INT,
+	MADONHANG INT,
 	MALAPTOP INT,
 	Soluong Int Check(Soluong>0),
 	Dongia Decimal(18,0) Check(Dongia>=0),	
-	CONSTRAINT PK_CTDH PRIMARY KEY(MaDonHang,MALAPTOP),
+	CONSTRAINT PK_CTDH PRIMARY KEY(MADONHANG,MALAPTOP),
 )
 GO
 drop table CHITIETDONTHANG
