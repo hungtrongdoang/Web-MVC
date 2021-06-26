@@ -65,11 +65,11 @@ h1 {
   font-size: 2em;
 }
 mark {
-  color: #000;
-  background: #ff0;
+  color: #337ab7;
+  background: #fcf8e3;
 }
 small {
-  font-size: 80%;
+  font-size: 70%;
 }
 sub,
 sup {
@@ -85,7 +85,7 @@ sub {
   bottom: -.25em;
 }
 img {
-  border: 0;
+  border: 1;
 }
 svg:not(:root) {
   overflow: hidden;
@@ -2561,7 +2561,7 @@ output {
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 .form-control:focus {
-  border-color: #66afe9;
+  border-color: #777;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
@@ -4119,7 +4119,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-fixed-top .navbar-collapse,
 .navbar-fixed-bottom .navbar-collapse {
-  max-height: 340px;
+  max-height: 500px;
 }
 @media (max-device-width: 480px) and (orientation: landscape) {
   .navbar-fixed-top .navbar-collapse,

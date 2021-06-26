@@ -151,8 +151,8 @@ E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\Bo
 E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\BookStore\BookStore\bin\Newtonsoft.Json.xml
 E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\BookStore\BookStore\bin\Antlr3.Runtime.pdb
 E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\BookStore\BookStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\BookStore\BookStore\obj\Debug\BookStore.csproj.AssemblyReference.cache
 E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\BookStore\BookStore\obj\Debug\BookStore.csproj.CoreCompileInputs.cache
 E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\BookStore\BookStore\obj\Debug\BookStore.csproj.CopyComplete
 E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\BookStore\BookStore\obj\Debug\BookStore.dll
 E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\BookStore\BookStore\obj\Debug\BookStore.pdb
+E:\TAI LIEU HOC TAP\UNIVERSITY\HK3-2021\Lập trình Web\đồ án\web thầy\BookStore\BookStore\obj\Debug\BookStore.csproj.AssemblyReference.cache

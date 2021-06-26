@@ -1,11 +1,13 @@
-﻿
+﻿@*SẢN PHẨM THEO HÃNG - CHỦ ĐỀ*@
+
+
 @model IEnumerable<BookStore.Models.SACH>
 @{
     ViewBag.Title = "SPtheochude";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h3 style="text-align: center; color:red">SÁCH THEO CHỦ ĐỀ</h3>
+<h3 style="text-align: center; color:black">LAPTOP THEO HÃNG</h3>
 <div class="row">
     @if (Model != null)
     {
@@ -14,7 +16,7 @@
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
                     <a hef="@Url.Action("Details", "BookStore", new { id = sach.Masach })">
-                        <img alt="@sach.Tensach" src="~/Hinhsanpham/@sach.Anhbia" height="300" width="300" />
+                        <img alt="@sach.Tensach" src="~/Hinhsanpham/@sach.Anhbia" height="200" width="200" />
                     </a>
                     <div>
                         <h4 style="text-align:center">
@@ -24,13 +26,13 @@
                     </div>
                 </div>
                 <div class="ratings">
-                    <p class="pull-right">18 reviews</p>
+                    <p class="pull-right">1 reviews</p>
                     <p>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star"></span>
                     </p>
                 </div>
             </div>
