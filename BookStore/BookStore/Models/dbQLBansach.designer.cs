@@ -33,6 +33,9 @@ namespace BookStore.Models
     partial void InsertAdmin(Admin instance);
     partial void UpdateAdmin(Admin instance);
     partial void DeleteAdmin(Admin instance);
+    partial void InsertVIETSACH(VIETSACH instance);
+    partial void UpdateVIETSACH(VIETSACH instance);
+    partial void DeleteVIETSACH(VIETSACH instance);
     partial void InsertCHITIETDONTHANG(CHITIETDONTHANG instance);
     partial void UpdateCHITIETDONTHANG(CHITIETDONTHANG instance);
     partial void DeleteCHITIETDONTHANG(CHITIETDONTHANG instance);
@@ -54,9 +57,6 @@ namespace BookStore.Models
     partial void InsertTACGIA(TACGIA instance);
     partial void UpdateTACGIA(TACGIA instance);
     partial void DeleteTACGIA(TACGIA instance);
-    partial void InsertVIETSACH(VIETSACH instance);
-    partial void UpdateVIETSACH(VIETSACH instance);
-    partial void DeleteVIETSACH(VIETSACH instance);
     #endregion
 		
 		public dbQLBansachDataContext() : 
@@ -94,6 +94,14 @@ namespace BookStore.Models
 			get
 			{
 				return this.GetTable<Admin>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VIETSACH> VIETSACHes
+		{
+			get
+			{
+				return this.GetTable<VIETSACH>();
 			}
 		}
 		
@@ -150,14 +158,6 @@ namespace BookStore.Models
 			get
 			{
 				return this.GetTable<TACGIA>();
-			}
-		}
-		
-		public System.Data.Linq.Table<VIETSACH> VIETSACHes
-		{
-			get
-			{
-				return this.GetTable<VIETSACH>();
 			}
 		}
 	}
@@ -247,6 +247,222 @@ namespace BookStore.Models
 					this._Hoten = value;
 					this.SendPropertyChanged("Hoten");
 					this.OnHotenChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VIETSACH")]
+	public partial class VIETSACH : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaTG;
+		
+		private int _Masach;
+		
+		private string _Vaitro;
+		
+		private string _Vitri;
+		
+		private EntityRef<SACH> _SACH;
+		
+		private EntityRef<TACGIA> _TACGIA;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaTGChanging(int value);
+    partial void OnMaTGChanged();
+    partial void OnMasachChanging(int value);
+    partial void OnMasachChanged();
+    partial void OnVaitroChanging(string value);
+    partial void OnVaitroChanged();
+    partial void OnVitriChanging(string value);
+    partial void OnVitriChanged();
+    #endregion
+		
+		public VIETSACH()
+		{
+			this._SACH = default(EntityRef<SACH>);
+			this._TACGIA = default(EntityRef<TACGIA>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTG", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaTG
+		{
+			get
+			{
+				return this._MaTG;
+			}
+			set
+			{
+				if ((this._MaTG != value))
+				{
+					if (this._TACGIA.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaTGChanging(value);
+					this.SendPropertyChanging();
+					this._MaTG = value;
+					this.SendPropertyChanged("MaTG");
+					this.OnMaTGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Masach", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Masach
+		{
+			get
+			{
+				return this._Masach;
+			}
+			set
+			{
+				if ((this._Masach != value))
+				{
+					if (this._SACH.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMasachChanging(value);
+					this.SendPropertyChanging();
+					this._Masach = value;
+					this.SendPropertyChanged("Masach");
+					this.OnMasachChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vaitro", DbType="NVarChar(50)")]
+		public string Vaitro
+		{
+			get
+			{
+				return this._Vaitro;
+			}
+			set
+			{
+				if ((this._Vaitro != value))
+				{
+					this.OnVaitroChanging(value);
+					this.SendPropertyChanging();
+					this._Vaitro = value;
+					this.SendPropertyChanged("Vaitro");
+					this.OnVaitroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vitri", DbType="NVarChar(50)")]
+		public string Vitri
+		{
+			get
+			{
+				return this._Vitri;
+			}
+			set
+			{
+				if ((this._Vitri != value))
+				{
+					this.OnVitriChanging(value);
+					this.SendPropertyChanging();
+					this._Vitri = value;
+					this.SendPropertyChanged("Vitri");
+					this.OnVitriChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SACH_VIETSACH", Storage="_SACH", ThisKey="Masach", OtherKey="Masach", IsForeignKey=true)]
+		public SACH SACH
+		{
+			get
+			{
+				return this._SACH.Entity;
+			}
+			set
+			{
+				SACH previousValue = this._SACH.Entity;
+				if (((previousValue != value) 
+							|| (this._SACH.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SACH.Entity = null;
+						previousValue.VIETSACHes.Remove(this);
+					}
+					this._SACH.Entity = value;
+					if ((value != null))
+					{
+						value.VIETSACHes.Add(this);
+						this._Masach = value.Masach;
+					}
+					else
+					{
+						this._Masach = default(int);
+					}
+					this.SendPropertyChanged("SACH");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACGIA_VIETSACH", Storage="_TACGIA", ThisKey="MaTG", OtherKey="MaTG", IsForeignKey=true)]
+		public TACGIA TACGIA
+		{
+			get
+			{
+				return this._TACGIA.Entity;
+			}
+			set
+			{
+				TACGIA previousValue = this._TACGIA.Entity;
+				if (((previousValue != value) 
+							|| (this._TACGIA.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TACGIA.Entity = null;
+						previousValue.VIETSACHes.Remove(this);
+					}
+					this._TACGIA.Entity = value;
+					if ((value != null))
+					{
+						value.VIETSACHes.Add(this);
+						this._MaTG = value.MaTG;
+					}
+					else
+					{
+						this._MaTG = default(int);
+					}
+					this.SendPropertyChanged("TACGIA");
 				}
 			}
 		}
@@ -1710,222 +1926,6 @@ namespace BookStore.Models
 		{
 			this.SendPropertyChanging();
 			entity.TACGIA = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VIETSACH")]
-	public partial class VIETSACH : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MaTG;
-		
-		private int _Masach;
-		
-		private string _Vaitro;
-		
-		private string _Vitri;
-		
-		private EntityRef<SACH> _SACH;
-		
-		private EntityRef<TACGIA> _TACGIA;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMaTGChanging(int value);
-    partial void OnMaTGChanged();
-    partial void OnMasachChanging(int value);
-    partial void OnMasachChanged();
-    partial void OnVaitroChanging(string value);
-    partial void OnVaitroChanged();
-    partial void OnVitriChanging(string value);
-    partial void OnVitriChanged();
-    #endregion
-		
-		public VIETSACH()
-		{
-			this._SACH = default(EntityRef<SACH>);
-			this._TACGIA = default(EntityRef<TACGIA>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTG", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MaTG
-		{
-			get
-			{
-				return this._MaTG;
-			}
-			set
-			{
-				if ((this._MaTG != value))
-				{
-					if (this._TACGIA.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaTGChanging(value);
-					this.SendPropertyChanging();
-					this._MaTG = value;
-					this.SendPropertyChanged("MaTG");
-					this.OnMaTGChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Masach", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Masach
-		{
-			get
-			{
-				return this._Masach;
-			}
-			set
-			{
-				if ((this._Masach != value))
-				{
-					if (this._SACH.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMasachChanging(value);
-					this.SendPropertyChanging();
-					this._Masach = value;
-					this.SendPropertyChanged("Masach");
-					this.OnMasachChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vaitro", DbType="NVarChar(50)")]
-		public string Vaitro
-		{
-			get
-			{
-				return this._Vaitro;
-			}
-			set
-			{
-				if ((this._Vaitro != value))
-				{
-					this.OnVaitroChanging(value);
-					this.SendPropertyChanging();
-					this._Vaitro = value;
-					this.SendPropertyChanged("Vaitro");
-					this.OnVaitroChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vitri", DbType="NVarChar(50)")]
-		public string Vitri
-		{
-			get
-			{
-				return this._Vitri;
-			}
-			set
-			{
-				if ((this._Vitri != value))
-				{
-					this.OnVitriChanging(value);
-					this.SendPropertyChanging();
-					this._Vitri = value;
-					this.SendPropertyChanged("Vitri");
-					this.OnVitriChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SACH_VIETSACH", Storage="_SACH", ThisKey="Masach", OtherKey="Masach", IsForeignKey=true)]
-		public SACH SACH
-		{
-			get
-			{
-				return this._SACH.Entity;
-			}
-			set
-			{
-				SACH previousValue = this._SACH.Entity;
-				if (((previousValue != value) 
-							|| (this._SACH.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SACH.Entity = null;
-						previousValue.VIETSACHes.Remove(this);
-					}
-					this._SACH.Entity = value;
-					if ((value != null))
-					{
-						value.VIETSACHes.Add(this);
-						this._Masach = value.Masach;
-					}
-					else
-					{
-						this._Masach = default(int);
-					}
-					this.SendPropertyChanged("SACH");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TACGIA_VIETSACH", Storage="_TACGIA", ThisKey="MaTG", OtherKey="MaTG", IsForeignKey=true)]
-		public TACGIA TACGIA
-		{
-			get
-			{
-				return this._TACGIA.Entity;
-			}
-			set
-			{
-				TACGIA previousValue = this._TACGIA.Entity;
-				if (((previousValue != value) 
-							|| (this._TACGIA.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TACGIA.Entity = null;
-						previousValue.VIETSACHes.Remove(this);
-					}
-					this._TACGIA.Entity = value;
-					if ((value != null))
-					{
-						value.VIETSACHes.Add(this);
-						this._MaTG = value.MaTG;
-					}
-					else
-					{
-						this._MaTG = default(int);
-					}
-					this.SendPropertyChanged("TACGIA");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

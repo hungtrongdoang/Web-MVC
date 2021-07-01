@@ -7,6 +7,16 @@
       <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.VIETSACH" Member="VIETSACHes">
+    <Type Name="VIETSACH">
+      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Masach" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Vaitro" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Vitri" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="SACH_VIETSACH" Member="SACH" ThisKey="Masach" OtherKey="Masach" Type="SACH" IsForeignKey="true" />
+      <Association Name="TACGIA_VIETSACH" Member="TACGIA" ThisKey="MaTG" OtherKey="MaTG" Type="TACGIA" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.CHITIETDONTHANG" Member="CHITIETDONTHANGs">
     <Type Name="CHITIETDONTHANG">
       <Column Name="MaDonHang" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -79,16 +89,6 @@
       <Column Name="Tieusu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Dienthoai" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="TACGIA_VIETSACH" Member="VIETSACHes" ThisKey="MaTG" OtherKey="MaTG" Type="VIETSACH" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VIETSACH" Member="VIETSACHes">
-    <Type Name="VIETSACH">
-      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Masach" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Vaitro" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Vitri" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="SACH_VIETSACH" Member="SACH" ThisKey="Masach" OtherKey="Masach" Type="SACH" IsForeignKey="true" />
-      <Association Name="TACGIA_VIETSACH" Member="TACGIA" ThisKey="MaTG" OtherKey="MaTG" Type="TACGIA" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
