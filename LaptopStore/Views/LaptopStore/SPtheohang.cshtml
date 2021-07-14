@@ -1,0 +1,40 @@
+﻿
+@model IEnumerable<LaptopStore.Models.LAPTOP>
+@{
+    ViewBag.Title = "SPtheohang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h3 style="text-align: center; color:red">LAPTOP THEO HÃNG</h3>
+<div class="row">
+    @if (Model != null)
+    {
+        foreach (var laptop in Model)
+        {
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <a href="@Url.Action("Details", "LaptopStore", new { id = laptop.MaLAPTOP })">
+                        <img alt="@laptop.TenLAPTOP" src="~/Hinhsanpham/@laptop.Anh" height="300" width="300" />
+                    </a>
+                    <div>
+                        <h4 style="text-align:center">
+                            @laptop.TenLAPTOP
+                        </h4>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">18 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+
+        }
+    }
+</div>
