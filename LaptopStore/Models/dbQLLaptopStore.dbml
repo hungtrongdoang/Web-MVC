@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLLAPTOP3" Class="dbQLLaptopStoreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-E0JTQGR5\LOCAL;Initial Catalog=QLLAPTOP3;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLLAPTOP3ConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLLAPTOP4" Class="dbQLLaptopStoreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=BRAVER\LOCAL;Initial Catalog=QLLAPTOP4;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLLAPTOP4ConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Admin" Member="Admins">
     <Type Name="Admin">
       <Column Name="UserAdmin" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -7,14 +7,26 @@
       <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.CHITIETDONTHANG" Member="CHITIETDONTHANGs">
-    <Type Name="CHITIETDONTHANG">
+  <Table Name="dbo.TinTuc" Member="TinTucs">
+    <Type Name="TinTuc">
+      <Column Name="MaTin" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="TomTat" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="UrlHinh" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="NoiDung" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="LuotXem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayCapNhat" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="AnHien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHITIETDONHANG" Member="CHITIETDONHANGs">
+    <Type Name="CHITIETDONHANG">
       <Column Name="MaDonHang" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaLAPTOP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaLAPTOP" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Dongia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Association Name="DONDATHANG_CHITIETDONTHANG" Member="DONDATHANG" ThisKey="MaDonHang" OtherKey="MaDonHang" Type="DONDATHANG" IsForeignKey="true" />
-      <Association Name="LAPTOP_CHITIETDONTHANG" Member="LAPTOP" ThisKey="MaLAPTOP" OtherKey="MaLAPTOP" Type="LAPTOP" IsForeignKey="true" />
+      <Association Name="DONDATHANG_CHITIETDONHANG" Member="DONDATHANG" ThisKey="MaDonHang" OtherKey="MaDonHang" Type="DONDATHANG" IsForeignKey="true" />
+      <Association Name="LAPTOP_CHITIETDONHANG" Member="LAPTOP" ThisKey="MaLAPTOP" OtherKey="MaLAPTOP" Type="LAPTOP" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DONDATHANG" Member="DONDATHANGs">
@@ -25,7 +37,7 @@
       <Column Name="Ngaydat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Ngaygiao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="DONDATHANG_CHITIETDONTHANG" Member="CHITIETDONTHANGs" ThisKey="MaDonHang" OtherKey="MaDonHang" Type="CHITIETDONTHANG" />
+      <Association Name="DONDATHANG_CHITIETDONHANG" Member="CHITIETDONHANG" ThisKey="MaDonHang" OtherKey="MaDonHang" Type="CHITIETDONHANG" Cardinality="One" />
       <Association Name="KHACHHANG_DONDATHANG" Member="KHACHHANG" ThisKey="MaKH" OtherKey="MaKH" Type="KHACHHANG" IsForeignKey="true" />
     </Type>
   </Table>
@@ -33,6 +45,7 @@
     <Type Name="HANG">
       <Column Name="MaHang" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TenHANG" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Logo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="HANG_LAPTOP" Member="LAPTOPs" ThisKey="MaHang" OtherKey="MaHang" Type="LAPTOP" />
     </Type>
   </Table>
@@ -58,7 +71,13 @@
       <Column Name="Anh" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="MaHang" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaNhucau" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="LAPTOP_CHITIETDONTHANG" Member="CHITIETDONTHANGs" ThisKey="MaLAPTOP" OtherKey="MaLAPTOP" Type="CHITIETDONTHANG" />
+      <Column Name="CPU" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GPU" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="RAM" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Hardware" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Man_Hinh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Pin" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="LAPTOP_CHITIETDONHANG" Member="CHITIETDONHANGs" ThisKey="MaLAPTOP" OtherKey="MaLAPTOP" Type="CHITIETDONHANG" />
       <Association Name="HANG_LAPTOP" Member="HANG" ThisKey="MaHang" OtherKey="MaHang" Type="HANG" IsForeignKey="true" />
       <Association Name="NHUCAU_LAPTOP" Member="NHUCAU" ThisKey="MaNhucau" OtherKey="MaNhucau" Type="NHUCAU" IsForeignKey="true" />
     </Type>
@@ -68,6 +87,24 @@
       <Column Name="MaNhucau" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TenNhucau" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="NHUCAU_LAPTOP" Member="LAPTOPs" ThisKey="MaNhucau" OtherKey="MaNhucau" Type="LAPTOP" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuangCao" Member="QuangCaos">
+    <Type Name="QuangCao">
+      <Column Name="MaQC" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenQC" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="TenCty" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="UrlHinh" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LinkUrl" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="vitri" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Ngaybatdau" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Ngayhethan" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="AnHien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SoLuotTruyCap" Member="SoLuotTruyCaps">
+    <Type Name="SoLuotTruyCap">
+      <Column Name="Dem" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

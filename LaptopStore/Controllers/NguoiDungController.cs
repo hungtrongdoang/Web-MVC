@@ -110,5 +110,11 @@ namespace BookStore.Controllers
             }
             return View();
         }
+
+        public ActionResult DangXuat()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "LaptopStore");
+        }
     }
 }

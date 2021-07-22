@@ -7,7 +7,7 @@
 
 <h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
 <table align="center" border="1">
-    <tr style="text-align:center; font-weight:bold"
+    <tr style="text-align:center; font-weight:bold">
         <td> Mã Laptop</td>
         <td> Tên Laptop</td>
         <td> Ảnh</td>
@@ -20,23 +20,24 @@
      </tr>
     @foreach (var item in Model)
     {
-        <tr style="text-align:center; font-weight:bold">
-            <td>@item.iMaLaptop</td>
-            <td>img src="~/Hinhsanpham/@item.sAnh"</td>
+<tr style="text-align:center; font-weight:bold">
+    <td>@item.iMaLaptop</td>
+    <td>@item.sTenLaptop</td>
+    <td><img src="~/SAN_PHAM/@item.sAnh" height="200" width="200"/></td>
+    @using (Html.BeginForm("UpdateGiohang", "GioHang", new { @iMaSP = item.iMaLaptop }))
+    {
+        <td>
+            <input type="number" min="1" name="txtSoluong" value="@item.iSoluong" style="background-color:yellow" />
+        </td>
+        <td>@String.Format("{0:0,0}", item.dDonggia)</td>
+        <td>@String.Format("{0:0,0}", item.dThanhtien)</td>
+        <td><a href="@Url.Action("Details", "LaptopStore", new { id = item.iMaLaptop })">Chi Tiết</td>
+        <td>@Html.ActionLink("Xóa", "XoaGiohang", new { @iMaSP = item.iMaLaptop })</td>
+        <td> <input type="submit" value="Cập nhật" /></td>
 
-            @using (Html.BeginForm("UpdateGiohang", "GioHang", new { @iMaSP = item.iMaLaptop }))
-            {
-                <td>
-                    <input type="number" min="1" name="txtSoluong" value="@item.iSoluong" style="background-color:yellow" />
-                </td>
-                <td>@String.Format("{0:0,0}", item.dDonggia)</td>
-                <td>@String.Format("{0:0,0}", item.dThanhtien)</td>
-                <td><a href="@Url.Action("Details", "LaptopStore", new { id = item.iMaLaptop })">Chi Tiết</td>
-                <td>@Html.ActionLink("Xóa", "XoaGiohang", new { @iMaSP = item.iMaLaptop })</td>
-                <td> <input type="submit" value="Cập nhật" /></td>
-            }
+    }
 
-        </tr>
+</tr>
     }
     <tr style="font-weight:bold; text-align:right;color:red">
         <td colspan="4">số lượng: @ViewBag.Tongsoluong</td>

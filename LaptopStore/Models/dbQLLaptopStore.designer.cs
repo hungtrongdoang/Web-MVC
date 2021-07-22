@@ -22,7 +22,7 @@ namespace LaptopStore.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QLLAPTOP3")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QLLAPTOP4")]
 	public partial class dbQLLaptopStoreDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,9 +33,12 @@ namespace LaptopStore.Models
     partial void InsertAdmin(Admin instance);
     partial void UpdateAdmin(Admin instance);
     partial void DeleteAdmin(Admin instance);
-    partial void InsertCHITIETDONTHANG(CHITIETDONTHANG instance);
-    partial void UpdateCHITIETDONTHANG(CHITIETDONTHANG instance);
-    partial void DeleteCHITIETDONTHANG(CHITIETDONTHANG instance);
+    partial void InsertTinTuc(TinTuc instance);
+    partial void UpdateTinTuc(TinTuc instance);
+    partial void DeleteTinTuc(TinTuc instance);
+    partial void InsertCHITIETDONHANG(CHITIETDONHANG instance);
+    partial void UpdateCHITIETDONHANG(CHITIETDONHANG instance);
+    partial void DeleteCHITIETDONHANG(CHITIETDONHANG instance);
     partial void InsertDONDATHANG(DONDATHANG instance);
     partial void UpdateDONDATHANG(DONDATHANG instance);
     partial void DeleteDONDATHANG(DONDATHANG instance);
@@ -51,10 +54,13 @@ namespace LaptopStore.Models
     partial void InsertNHUCAU(NHUCAU instance);
     partial void UpdateNHUCAU(NHUCAU instance);
     partial void DeleteNHUCAU(NHUCAU instance);
+    partial void InsertQuangCao(QuangCao instance);
+    partial void UpdateQuangCao(QuangCao instance);
+    partial void DeleteQuangCao(QuangCao instance);
     #endregion
 		
 		public dbQLLaptopStoreDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLLAPTOP3ConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLLAPTOP4ConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -91,11 +97,19 @@ namespace LaptopStore.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<CHITIETDONTHANG> CHITIETDONTHANGs
+		public System.Data.Linq.Table<TinTuc> TinTucs
 		{
 			get
 			{
-				return this.GetTable<CHITIETDONTHANG>();
+				return this.GetTable<TinTuc>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CHITIETDONHANG> CHITIETDONHANGs
+		{
+			get
+			{
+				return this.GetTable<CHITIETDONHANG>();
 			}
 		}
 		
@@ -136,6 +150,22 @@ namespace LaptopStore.Models
 			get
 			{
 				return this.GetTable<NHUCAU>();
+			}
+		}
+		
+		public System.Data.Linq.Table<QuangCao> QuangCaos
+		{
+			get
+			{
+				return this.GetTable<QuangCao>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SoLuotTruyCap> SoLuotTruyCaps
+		{
+			get
+			{
+				return this.GetTable<SoLuotTruyCap>();
 			}
 		}
 	}
@@ -250,15 +280,245 @@ namespace LaptopStore.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CHITIETDONTHANG")]
-	public partial class CHITIETDONTHANG : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TinTuc")]
+	public partial class TinTuc : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaTin;
+		
+		private string _TieuDe;
+		
+		private string _TomTat;
+		
+		private string _UrlHinh;
+		
+		private string _NoiDung;
+		
+		private System.Nullable<int> _LuotXem;
+		
+		private System.Nullable<System.DateTime> _NgayCapNhat;
+		
+		private bool _AnHien;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaTinChanging(int value);
+    partial void OnMaTinChanged();
+    partial void OnTieuDeChanging(string value);
+    partial void OnTieuDeChanged();
+    partial void OnTomTatChanging(string value);
+    partial void OnTomTatChanged();
+    partial void OnUrlHinhChanging(string value);
+    partial void OnUrlHinhChanged();
+    partial void OnNoiDungChanging(string value);
+    partial void OnNoiDungChanged();
+    partial void OnLuotXemChanging(System.Nullable<int> value);
+    partial void OnLuotXemChanged();
+    partial void OnNgayCapNhatChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayCapNhatChanged();
+    partial void OnAnHienChanging(bool value);
+    partial void OnAnHienChanged();
+    #endregion
+		
+		public TinTuc()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaTin", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaTin
+		{
+			get
+			{
+				return this._MaTin;
+			}
+			set
+			{
+				if ((this._MaTin != value))
+				{
+					this.OnMaTinChanging(value);
+					this.SendPropertyChanging();
+					this._MaTin = value;
+					this.SendPropertyChanged("MaTin");
+					this.OnMaTinChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TieuDe", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TieuDe
+		{
+			get
+			{
+				return this._TieuDe;
+			}
+			set
+			{
+				if ((this._TieuDe != value))
+				{
+					this.OnTieuDeChanging(value);
+					this.SendPropertyChanging();
+					this._TieuDe = value;
+					this.SendPropertyChanged("TieuDe");
+					this.OnTieuDeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TomTat", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TomTat
+		{
+			get
+			{
+				return this._TomTat;
+			}
+			set
+			{
+				if ((this._TomTat != value))
+				{
+					this.OnTomTatChanging(value);
+					this.SendPropertyChanging();
+					this._TomTat = value;
+					this.SendPropertyChanged("TomTat");
+					this.OnTomTatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UrlHinh", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string UrlHinh
+		{
+			get
+			{
+				return this._UrlHinh;
+			}
+			set
+			{
+				if ((this._UrlHinh != value))
+				{
+					this.OnUrlHinhChanging(value);
+					this.SendPropertyChanging();
+					this._UrlHinh = value;
+					this.SendPropertyChanged("UrlHinh");
+					this.OnUrlHinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoiDung", DbType="NText NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string NoiDung
+		{
+			get
+			{
+				return this._NoiDung;
+			}
+			set
+			{
+				if ((this._NoiDung != value))
+				{
+					this.OnNoiDungChanging(value);
+					this.SendPropertyChanging();
+					this._NoiDung = value;
+					this.SendPropertyChanged("NoiDung");
+					this.OnNoiDungChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LuotXem", DbType="Int")]
+		public System.Nullable<int> LuotXem
+		{
+			get
+			{
+				return this._LuotXem;
+			}
+			set
+			{
+				if ((this._LuotXem != value))
+				{
+					this.OnLuotXemChanging(value);
+					this.SendPropertyChanging();
+					this._LuotXem = value;
+					this.SendPropertyChanged("LuotXem");
+					this.OnLuotXemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayCapNhat", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> NgayCapNhat
+		{
+			get
+			{
+				return this._NgayCapNhat;
+			}
+			set
+			{
+				if ((this._NgayCapNhat != value))
+				{
+					this.OnNgayCapNhatChanging(value);
+					this.SendPropertyChanging();
+					this._NgayCapNhat = value;
+					this.SendPropertyChanged("NgayCapNhat");
+					this.OnNgayCapNhatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnHien", DbType="Bit NOT NULL")]
+		public bool AnHien
+		{
+			get
+			{
+				return this._AnHien;
+			}
+			set
+			{
+				if ((this._AnHien != value))
+				{
+					this.OnAnHienChanging(value);
+					this.SendPropertyChanging();
+					this._AnHien = value;
+					this.SendPropertyChanged("AnHien");
+					this.OnAnHienChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CHITIETDONHANG")]
+	public partial class CHITIETDONHANG : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _MaDonHang;
 		
-		private int _MaLAPTOP;
+		private System.Nullable<int> _MaLAPTOP;
 		
 		private System.Nullable<int> _Soluong;
 		
@@ -274,7 +534,7 @@ namespace LaptopStore.Models
     partial void OnCreated();
     partial void OnMaDonHangChanging(int value);
     partial void OnMaDonHangChanged();
-    partial void OnMaLAPTOPChanging(int value);
+    partial void OnMaLAPTOPChanging(System.Nullable<int> value);
     partial void OnMaLAPTOPChanged();
     partial void OnSoluongChanging(System.Nullable<int> value);
     partial void OnSoluongChanged();
@@ -282,7 +542,7 @@ namespace LaptopStore.Models
     partial void OnDongiaChanged();
     #endregion
 		
-		public CHITIETDONTHANG()
+		public CHITIETDONHANG()
 		{
 			this._DONDATHANG = default(EntityRef<DONDATHANG>);
 			this._LAPTOP = default(EntityRef<LAPTOP>);
@@ -313,8 +573,8 @@ namespace LaptopStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLAPTOP", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MaLAPTOP
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaLAPTOP", DbType="Int")]
+		public System.Nullable<int> MaLAPTOP
 		{
 			get
 			{
@@ -377,7 +637,7 @@ namespace LaptopStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DONDATHANG_CHITIETDONTHANG", Storage="_DONDATHANG", ThisKey="MaDonHang", OtherKey="MaDonHang", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DONDATHANG_CHITIETDONHANG", Storage="_DONDATHANG", ThisKey="MaDonHang", OtherKey="MaDonHang", IsForeignKey=true)]
 		public DONDATHANG DONDATHANG
 		{
 			get
@@ -394,12 +654,12 @@ namespace LaptopStore.Models
 					if ((previousValue != null))
 					{
 						this._DONDATHANG.Entity = null;
-						previousValue.CHITIETDONTHANGs.Remove(this);
+						previousValue.CHITIETDONHANG = null;
 					}
 					this._DONDATHANG.Entity = value;
 					if ((value != null))
 					{
-						value.CHITIETDONTHANGs.Add(this);
+						value.CHITIETDONHANG = this;
 						this._MaDonHang = value.MaDonHang;
 					}
 					else
@@ -411,7 +671,7 @@ namespace LaptopStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LAPTOP_CHITIETDONTHANG", Storage="_LAPTOP", ThisKey="MaLAPTOP", OtherKey="MaLAPTOP", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LAPTOP_CHITIETDONHANG", Storage="_LAPTOP", ThisKey="MaLAPTOP", OtherKey="MaLAPTOP", IsForeignKey=true)]
 		public LAPTOP LAPTOP
 		{
 			get
@@ -428,17 +688,17 @@ namespace LaptopStore.Models
 					if ((previousValue != null))
 					{
 						this._LAPTOP.Entity = null;
-						previousValue.CHITIETDONTHANGs.Remove(this);
+						previousValue.CHITIETDONHANGs.Remove(this);
 					}
 					this._LAPTOP.Entity = value;
 					if ((value != null))
 					{
-						value.CHITIETDONTHANGs.Add(this);
+						value.CHITIETDONHANGs.Add(this);
 						this._MaLAPTOP = value.MaLAPTOP;
 					}
 					else
 					{
-						this._MaLAPTOP = default(int);
+						this._MaLAPTOP = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("LAPTOP");
 				}
@@ -484,7 +744,7 @@ namespace LaptopStore.Models
 		
 		private System.Nullable<int> _MaKH;
 		
-		private EntitySet<CHITIETDONTHANG> _CHITIETDONTHANGs;
+		private EntityRef<CHITIETDONHANG> _CHITIETDONHANG;
 		
 		private EntityRef<KHACHHANG> _KHACHHANG;
 		
@@ -508,7 +768,7 @@ namespace LaptopStore.Models
 		
 		public DONDATHANG()
 		{
-			this._CHITIETDONTHANGs = new EntitySet<CHITIETDONTHANG>(new Action<CHITIETDONTHANG>(this.attach_CHITIETDONTHANGs), new Action<CHITIETDONTHANG>(this.detach_CHITIETDONTHANGs));
+			this._CHITIETDONHANG = default(EntityRef<CHITIETDONHANG>);
 			this._KHACHHANG = default(EntityRef<KHACHHANG>);
 			OnCreated();
 		}
@@ -637,16 +897,32 @@ namespace LaptopStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DONDATHANG_CHITIETDONTHANG", Storage="_CHITIETDONTHANGs", ThisKey="MaDonHang", OtherKey="MaDonHang")]
-		public EntitySet<CHITIETDONTHANG> CHITIETDONTHANGs
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DONDATHANG_CHITIETDONHANG", Storage="_CHITIETDONHANG", ThisKey="MaDonHang", OtherKey="MaDonHang", IsUnique=true, IsForeignKey=false)]
+		public CHITIETDONHANG CHITIETDONHANG
 		{
 			get
 			{
-				return this._CHITIETDONTHANGs;
+				return this._CHITIETDONHANG.Entity;
 			}
 			set
 			{
-				this._CHITIETDONTHANGs.Assign(value);
+				CHITIETDONHANG previousValue = this._CHITIETDONHANG.Entity;
+				if (((previousValue != value) 
+							|| (this._CHITIETDONHANG.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CHITIETDONHANG.Entity = null;
+						previousValue.DONDATHANG = null;
+					}
+					this._CHITIETDONHANG.Entity = value;
+					if ((value != null))
+					{
+						value.DONDATHANG = this;
+					}
+					this.SendPropertyChanged("CHITIETDONHANG");
+				}
 			}
 		}
 		
@@ -703,18 +979,6 @@ namespace LaptopStore.Models
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_CHITIETDONTHANGs(CHITIETDONTHANG entity)
-		{
-			this.SendPropertyChanging();
-			entity.DONDATHANG = this;
-		}
-		
-		private void detach_CHITIETDONTHANGs(CHITIETDONTHANG entity)
-		{
-			this.SendPropertyChanging();
-			entity.DONDATHANG = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HANG")]
@@ -727,6 +991,8 @@ namespace LaptopStore.Models
 		
 		private string _TenHANG;
 		
+		private string _Logo;
+		
 		private EntitySet<LAPTOP> _LAPTOPs;
 		
     #region Extensibility Method Definitions
@@ -737,6 +1003,8 @@ namespace LaptopStore.Models
     partial void OnMaHangChanged();
     partial void OnTenHANGChanging(string value);
     partial void OnTenHANGChanged();
+    partial void OnLogoChanging(string value);
+    partial void OnLogoChanged();
     #endregion
 		
 		public HANG()
@@ -781,6 +1049,26 @@ namespace LaptopStore.Models
 					this._TenHANG = value;
 					this.SendPropertyChanged("TenHANG");
 					this.OnTenHANGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Logo", DbType="VarChar(50)")]
+		public string Logo
+		{
+			get
+			{
+				return this._Logo;
+			}
+			set
+			{
+				if ((this._Logo != value))
+				{
+					this.OnLogoChanging(value);
+					this.SendPropertyChanging();
+					this._Logo = value;
+					this.SendPropertyChanged("Logo");
+					this.OnLogoChanged();
 				}
 			}
 		}
@@ -1109,7 +1397,19 @@ namespace LaptopStore.Models
 		
 		private System.Nullable<int> _MaNhucau;
 		
-		private EntitySet<CHITIETDONTHANG> _CHITIETDONTHANGs;
+		private string _CPU;
+		
+		private string _GPU;
+		
+		private string _RAM;
+		
+		private string _Hardware;
+		
+		private string _Man_Hinh;
+		
+		private string _Pin;
+		
+		private EntitySet<CHITIETDONHANG> _CHITIETDONHANGs;
 		
 		private EntityRef<HANG> _HANG;
 		
@@ -1133,11 +1433,23 @@ namespace LaptopStore.Models
     partial void OnMaHangChanged();
     partial void OnMaNhucauChanging(System.Nullable<int> value);
     partial void OnMaNhucauChanged();
+    partial void OnCPUChanging(string value);
+    partial void OnCPUChanged();
+    partial void OnGPUChanging(string value);
+    partial void OnGPUChanged();
+    partial void OnRAMChanging(string value);
+    partial void OnRAMChanged();
+    partial void OnHardwareChanging(string value);
+    partial void OnHardwareChanged();
+    partial void OnMan_HinhChanging(string value);
+    partial void OnMan_HinhChanged();
+    partial void OnPinChanging(string value);
+    partial void OnPinChanged();
     #endregion
 		
 		public LAPTOP()
 		{
-			this._CHITIETDONTHANGs = new EntitySet<CHITIETDONTHANG>(new Action<CHITIETDONTHANG>(this.attach_CHITIETDONTHANGs), new Action<CHITIETDONTHANG>(this.detach_CHITIETDONTHANGs));
+			this._CHITIETDONHANGs = new EntitySet<CHITIETDONHANG>(new Action<CHITIETDONHANG>(this.attach_CHITIETDONHANGs), new Action<CHITIETDONHANG>(this.detach_CHITIETDONHANGs));
 			this._HANG = default(EntityRef<HANG>);
 			this._NHUCAU = default(EntityRef<NHUCAU>);
 			OnCreated();
@@ -1291,16 +1603,136 @@ namespace LaptopStore.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LAPTOP_CHITIETDONTHANG", Storage="_CHITIETDONTHANGs", ThisKey="MaLAPTOP", OtherKey="MaLAPTOP")]
-		public EntitySet<CHITIETDONTHANG> CHITIETDONTHANGs
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CPU", DbType="NVarChar(100)")]
+		public string CPU
 		{
 			get
 			{
-				return this._CHITIETDONTHANGs;
+				return this._CPU;
 			}
 			set
 			{
-				this._CHITIETDONTHANGs.Assign(value);
+				if ((this._CPU != value))
+				{
+					this.OnCPUChanging(value);
+					this.SendPropertyChanging();
+					this._CPU = value;
+					this.SendPropertyChanged("CPU");
+					this.OnCPUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GPU", DbType="NVarChar(100)")]
+		public string GPU
+		{
+			get
+			{
+				return this._GPU;
+			}
+			set
+			{
+				if ((this._GPU != value))
+				{
+					this.OnGPUChanging(value);
+					this.SendPropertyChanging();
+					this._GPU = value;
+					this.SendPropertyChanged("GPU");
+					this.OnGPUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RAM", DbType="NVarChar(100)")]
+		public string RAM
+		{
+			get
+			{
+				return this._RAM;
+			}
+			set
+			{
+				if ((this._RAM != value))
+				{
+					this.OnRAMChanging(value);
+					this.SendPropertyChanging();
+					this._RAM = value;
+					this.SendPropertyChanged("RAM");
+					this.OnRAMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hardware", DbType="NVarChar(100)")]
+		public string Hardware
+		{
+			get
+			{
+				return this._Hardware;
+			}
+			set
+			{
+				if ((this._Hardware != value))
+				{
+					this.OnHardwareChanging(value);
+					this.SendPropertyChanging();
+					this._Hardware = value;
+					this.SendPropertyChanged("Hardware");
+					this.OnHardwareChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Man_Hinh", DbType="NVarChar(100)")]
+		public string Man_Hinh
+		{
+			get
+			{
+				return this._Man_Hinh;
+			}
+			set
+			{
+				if ((this._Man_Hinh != value))
+				{
+					this.OnMan_HinhChanging(value);
+					this.SendPropertyChanging();
+					this._Man_Hinh = value;
+					this.SendPropertyChanged("Man_Hinh");
+					this.OnMan_HinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pin", DbType="NVarChar(100)")]
+		public string Pin
+		{
+			get
+			{
+				return this._Pin;
+			}
+			set
+			{
+				if ((this._Pin != value))
+				{
+					this.OnPinChanging(value);
+					this.SendPropertyChanging();
+					this._Pin = value;
+					this.SendPropertyChanged("Pin");
+					this.OnPinChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LAPTOP_CHITIETDONHANG", Storage="_CHITIETDONHANGs", ThisKey="MaLAPTOP", OtherKey="MaLAPTOP")]
+		public EntitySet<CHITIETDONHANG> CHITIETDONHANGs
+		{
+			get
+			{
+				return this._CHITIETDONHANGs;
+			}
+			set
+			{
+				this._CHITIETDONHANGs.Assign(value);
 			}
 		}
 		
@@ -1392,13 +1824,13 @@ namespace LaptopStore.Models
 			}
 		}
 		
-		private void attach_CHITIETDONTHANGs(CHITIETDONTHANG entity)
+		private void attach_CHITIETDONHANGs(CHITIETDONHANG entity)
 		{
 			this.SendPropertyChanging();
 			entity.LAPTOP = this;
 		}
 		
-		private void detach_CHITIETDONTHANGs(CHITIETDONTHANG entity)
+		private void detach_CHITIETDONHANGs(CHITIETDONHANG entity)
 		{
 			this.SendPropertyChanging();
 			entity.LAPTOP = null;
@@ -1516,6 +1948,287 @@ namespace LaptopStore.Models
 		{
 			this.SendPropertyChanging();
 			entity.NHUCAU = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuangCao")]
+	public partial class QuangCao : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaQC;
+		
+		private string _TenQC;
+		
+		private string _TenCty;
+		
+		private string _UrlHinh;
+		
+		private string _LinkUrl;
+		
+		private string _vitri;
+		
+		private System.Nullable<System.DateTime> _Ngaybatdau;
+		
+		private System.Nullable<System.DateTime> _Ngayhethan;
+		
+		private bool _AnHien;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaQCChanging(int value);
+    partial void OnMaQCChanged();
+    partial void OnTenQCChanging(string value);
+    partial void OnTenQCChanged();
+    partial void OnTenCtyChanging(string value);
+    partial void OnTenCtyChanged();
+    partial void OnUrlHinhChanging(string value);
+    partial void OnUrlHinhChanged();
+    partial void OnLinkUrlChanging(string value);
+    partial void OnLinkUrlChanged();
+    partial void OnvitriChanging(string value);
+    partial void OnvitriChanged();
+    partial void OnNgaybatdauChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgaybatdauChanged();
+    partial void OnNgayhethanChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayhethanChanged();
+    partial void OnAnHienChanging(bool value);
+    partial void OnAnHienChanged();
+    #endregion
+		
+		public QuangCao()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaQC", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaQC
+		{
+			get
+			{
+				return this._MaQC;
+			}
+			set
+			{
+				if ((this._MaQC != value))
+				{
+					this.OnMaQCChanging(value);
+					this.SendPropertyChanging();
+					this._MaQC = value;
+					this.SendPropertyChanged("MaQC");
+					this.OnMaQCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenQC", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TenQC
+		{
+			get
+			{
+				return this._TenQC;
+			}
+			set
+			{
+				if ((this._TenQC != value))
+				{
+					this.OnTenQCChanging(value);
+					this.SendPropertyChanging();
+					this._TenQC = value;
+					this.SendPropertyChanged("TenQC");
+					this.OnTenQCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenCty", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string TenCty
+		{
+			get
+			{
+				return this._TenCty;
+			}
+			set
+			{
+				if ((this._TenCty != value))
+				{
+					this.OnTenCtyChanging(value);
+					this.SendPropertyChanging();
+					this._TenCty = value;
+					this.SendPropertyChanged("TenCty");
+					this.OnTenCtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UrlHinh", DbType="VarChar(100)")]
+		public string UrlHinh
+		{
+			get
+			{
+				return this._UrlHinh;
+			}
+			set
+			{
+				if ((this._UrlHinh != value))
+				{
+					this.OnUrlHinhChanging(value);
+					this.SendPropertyChanging();
+					this._UrlHinh = value;
+					this.SendPropertyChanged("UrlHinh");
+					this.OnUrlHinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LinkUrl", DbType="VarChar(100)")]
+		public string LinkUrl
+		{
+			get
+			{
+				return this._LinkUrl;
+			}
+			set
+			{
+				if ((this._LinkUrl != value))
+				{
+					this.OnLinkUrlChanging(value);
+					this.SendPropertyChanging();
+					this._LinkUrl = value;
+					this.SendPropertyChanged("LinkUrl");
+					this.OnLinkUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vitri", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string vitri
+		{
+			get
+			{
+				return this._vitri;
+			}
+			set
+			{
+				if ((this._vitri != value))
+				{
+					this.OnvitriChanging(value);
+					this.SendPropertyChanging();
+					this._vitri = value;
+					this.SendPropertyChanged("vitri");
+					this.OnvitriChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngaybatdau", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> Ngaybatdau
+		{
+			get
+			{
+				return this._Ngaybatdau;
+			}
+			set
+			{
+				if ((this._Ngaybatdau != value))
+				{
+					this.OnNgaybatdauChanging(value);
+					this.SendPropertyChanging();
+					this._Ngaybatdau = value;
+					this.SendPropertyChanged("Ngaybatdau");
+					this.OnNgaybatdauChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngayhethan", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> Ngayhethan
+		{
+			get
+			{
+				return this._Ngayhethan;
+			}
+			set
+			{
+				if ((this._Ngayhethan != value))
+				{
+					this.OnNgayhethanChanging(value);
+					this.SendPropertyChanging();
+					this._Ngayhethan = value;
+					this.SendPropertyChanged("Ngayhethan");
+					this.OnNgayhethanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AnHien", DbType="Bit NOT NULL")]
+		public bool AnHien
+		{
+			get
+			{
+				return this._AnHien;
+			}
+			set
+			{
+				if ((this._AnHien != value))
+				{
+					this.OnAnHienChanging(value);
+					this.SendPropertyChanging();
+					this._AnHien = value;
+					this.SendPropertyChanged("AnHien");
+					this.OnAnHienChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SoLuotTruyCap")]
+	public partial class SoLuotTruyCap
+	{
+		
+		private System.Nullable<int> _Dem;
+		
+		public SoLuotTruyCap()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dem", DbType="Int")]
+		public System.Nullable<int> Dem
+		{
+			get
+			{
+				return this._Dem;
+			}
+			set
+			{
+				if ((this._Dem != value))
+				{
+					this._Dem = value;
+				}
+			}
 		}
 	}
 }

@@ -1,0 +1,64 @@
+﻿@model LaptopStore.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "XoaDon";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h3>Bạn có chắc muốn xóa đơn này?</h3>
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dathanhtoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dathanhtoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tinhtranggiaohang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tinhtranggiaohang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngaydat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngaydat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngaygiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngaygiao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaKH)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "DON")
+        </div>
+    }
+</div>

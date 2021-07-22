@@ -1,40 +1,66 @@
-﻿@model IEnumerable<LaptopStore.Models.LAPTOP>
+﻿@*@model IEnumerable<LaptopStore.Models.LAPTOP>*@
+@using PagedList.Mvc;
+@model PagedList.PagedList<LAPTOP>
+@using LaptopStore.Models
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2 style="color:red">TRANG CHỦ</h2>
+<h2 style="color:red">SẢN PHẨM</h2>
 
-<div class="row">
-@if (Model != null)
-{
-    foreach (var laptop in Model)
+<div class="col-md-12">
+    @if (Model != null)
     {
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <a href="@Url.Action("Details", "LaptopStore", new { id = laptop.MaLAPTOP })">
-                    <img alt="@laptop.TenLAPTOP" src="~/Hinhsanpham/@laptop.Anh" height="300" width="300" />
-                </a>
-                <div>
-                    <h4 style="text-align:center">
-                        @laptop.TenLAPTOP
-                    </h4>
-                    <p></p>
+        foreach (var laptop in Model)
+        {
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <a href="@Url.Action("Details", "LaptopStore", new { id = laptop.MaLAPTOP })">
+                        <img alt="@laptop.TenLAPTOP" src="~/SAN_PHAM/@laptop.Anh" height="300" width="300" />
+                    </a>
+                    <div>
+                        <h4 style="text-align:center">
+                          @Truncate(laptop.TenLAPTOP,30)
+                        </h4>
+                        
+                    </div>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">18 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
                 </div>
             </div>
-            <div class="ratings">
-                <p class="pull-right">18 reviews</p>
-                <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                </p>
-            </div>
-        </div>
+
+        }
 
     }
-}
 </div>
+    Trang @(Model.PageCount < Model.PageNumber?0:Model.PageNumber)/ @Model.PageCount;
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>

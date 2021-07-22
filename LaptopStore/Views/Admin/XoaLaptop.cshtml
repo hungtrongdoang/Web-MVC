@@ -1,0 +1,73 @@
+﻿@model LaptopStore.Models.LAPTOP
+
+@{
+    ViewBag.Title = "XoaLaptop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xóa</h2>
+
+<h3>Bạn có chắc chắn khi xóa sản phẩm này?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <
+        <dt>
+            Tên Laptop
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLAPTOP)
+        </dd>
+
+        <dt>
+            Giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Giaban)
+        </dd>
+
+        <dt>
+            Mô Tả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            Ảnh
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/SAN_PHAM/" + Model.Anh)" width="120px" />
+        </dd>
+
+        <dt>
+            Hãng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HANG.TenHANG)
+        </dd>
+
+        <dt>
+            Nhu Cầu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHUCAU.TenNhucau)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Laptop")
+        </div>
+    }
+</div>

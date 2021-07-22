@@ -1,0 +1,119 @@
+﻿@model LaptopStore.Models.LAPTOP
+
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>CHI TIẾT LAPTOP</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Laptop          
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLAPTOP)
+        </dd>
+
+        <dt>
+            Giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Giaban)
+        </dd>
+
+        <dt>
+            Mô Tả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+           Ảnh
+        </dt>
+
+        <dd>
+          <img src="@Url.Content("~/SAN_PHAM/" + Model.Anh)" width="120" />
+        </dd>
+
+        <dt>
+           Hãng 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HANG.TenHANG)
+        </dd>
+
+        <dt>
+           Nhu Cầu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHUCAU.TenNhucau)
+        </dd>
+
+    </dl>
+</div>
+        
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           CPU
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CPU)
+        </dd>
+        <dt>
+            GPU
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GPU)
+        </dd>
+        <dt>
+            RAM
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAM)
+        </dd>
+        <dt>
+            Ổ cứng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hardware)
+        </dd>
+        <dt>
+            Màn hình
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Man_Hinh)
+        </dd>
+        <dt>
+           Pin
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pin)
+        </dd>
+
+    </dl>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaLAPTOP }) |
+    @Html.ActionLink("Back to List", "Laptop")
+</p>

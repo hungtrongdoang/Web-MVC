@@ -153,12 +153,12 @@ namespace LaptopStore.Controllers
             data.SubmitChanges();
             foreach( var item in gh)
             {
-                CHITIETDONTHANG ctdh = new CHITIETDONTHANG();
+                CHITIETDONHANG ctdh = new CHITIETDONHANG();
                 ctdh.MaDonHang = ddh.MaDonHang;
                 ctdh.MaLAPTOP = item.iMaLaptop;
                 ctdh.Soluong = item.iSoluong;
                 ctdh.Dongia = (decimal)item.dDonggia;
-                data.CHITIETDONTHANGs.InsertOnSubmit(ctdh);
+                data.CHITIETDONHANGs.InsertOnSubmit(ctdh);
             }
 
             data.SubmitChanges();

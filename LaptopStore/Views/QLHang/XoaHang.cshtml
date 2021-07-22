@@ -1,0 +1,41 @@
+﻿@model LaptopStore.Models.HANG
+
+@{
+    ViewBag.Title = "XoaHang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xóa Hãng</h2>
+
+<h3>Bạn có chắc muốn xóa hãng này?</h3>
+<div>
+    <h4>Hãng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên Hãng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenHANG)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Logo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "HANG")
+        </div>
+    }
+</div>

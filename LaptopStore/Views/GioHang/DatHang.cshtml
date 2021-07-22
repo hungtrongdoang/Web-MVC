@@ -13,6 +13,7 @@
         <td>Mã Laptop</td>
         <td>Tên Laptop</td>
         <td> Ảnh </td>
+        <td> Số Lượng</td>
         <td> Đơn Giá</td>
         <td> Thành Tiền</td>
     </tr>
@@ -22,7 +23,7 @@
         <tr style="text-align:center; font-weight:bold">
             <td> @item.iMaLaptop</td>
             <td> @item.sTenLaptop</td>
-            <td> <img src="~/Hinhsanpham/@item.sAnh" /></td>
+            <td> <img src="~/SAN_PHAM/@item.sAnh" /></td>
             @using (Html.BeginForm("UpdateGiohang", "GioHang", new { @iMaSP = item.iMaLaptop }))
             {
                 <td>

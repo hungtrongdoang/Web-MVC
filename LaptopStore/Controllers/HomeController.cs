@@ -26,5 +26,11 @@ namespace LaptopStore.Controllers
 
             return View();
         }
+        public ActionResult Dichvu()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

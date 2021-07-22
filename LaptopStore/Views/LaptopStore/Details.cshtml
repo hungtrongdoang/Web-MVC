@@ -1,4 +1,6 @@
-﻿<style type="text/css">
+﻿@using LaptopStore.Models
+@model LaptopStore.Models.LAPTOP
+<style type="text/css">
     #Datmua a {
         clear: both;
         background-color: red;
@@ -20,19 +22,86 @@
 </style>
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    Layout = "~/Views/Shared/_LayoutUser_Sanpham.cshtml";
 }
 
 <h3> THÔNG TIN LAPTOP</h3>
 <div>
     <div style="width:40%; float:left; border-left: dotted 1px; border-color:azure">
-        <img src="~/Hinhsanpham/@Model.Anh" width="50%" />
+        <img src="~/SAN_PHAM/@Model.Anh"  height="50%" width="50%"/>
     </div>
     <div style="width: 60%; float: left; padding 10px">
         <h4 style="font-weight: bold; color:red">Tên laptop: @Model.TenLAPTOP</h4>
+        @*<h4 style="font-weight: bold; color:red">Hãng: @Model.TenHANG</h4>*@
         <p style="text-align:justify"> <span style="font-weight:bold">Mô tả:</span>@Model.Mota</p>
         <p style="font-weight:bold">Giá bán: <span style="color:red;font-size:16px">@Model.Giaban VNĐ</span></p>
     </div>
+    <div>
+        <table class="table" border="1">
+            <tr>
+                <th>
+                    CPU
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.CPU)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    GPU
+                <td>
+                    @Html.DisplayFor(model => model.GPU)
+                </td>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    RAM
+                <td> @Html.DisplayFor(model => model.RAM)</td>
+                </th>
+            </tr>
+
+            <tr>
+                <th>
+                    Ổ Cứng
+                <td>@Html.DisplayFor(model => model.Hardware)</td>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Màn Hình
+                <td>
+                    @Html.DisplayFor(model => model.Man_Hinh)
+                </td>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Pin
+                <td>
+                    @Html.DisplayFor(model => model.Pin)
+                </td>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Hãng
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.HANG.TenHANG)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Nhu Cầu
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.NHUCAU.TenNhucau)
+                </td>
+            </tr>
+        </table>
+    </div>
+
     <div>
         <div id="Datmua">
             <a href="@Url.Action("ThemGioHang", "GioHang", new {@iMalaptop = @Model.MaLAPTOP,@strUrl=Request.Url.ToString()})" class="list-group-item">

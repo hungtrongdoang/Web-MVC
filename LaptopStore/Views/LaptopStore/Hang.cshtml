@@ -1,11 +1,12 @@
 ﻿
 @model IEnumerable<LaptopStore.Models.HANG>
-<p class="list-group">LAPTOP THEO HÃNG</p>
+
 <div class="list-group">
     @foreach (var item in Model)
     {
-        <a href="@Url.Action("SPTheohang","LaptopStore", new { id = item.MaHang })" class="list-group-item">
-            @item.TenHANG
-        </a>
+    <a href="@Url.Action("SPTheohang","LaptopStore", new { id = item.MaHang })" class="list-group-item" >
+        @*@item.Logo*@
+        <img src="~/logo/@item.Logo"  height="50%" width="70%" style="align-self:center"/>
+    </a>
     }
 </div>

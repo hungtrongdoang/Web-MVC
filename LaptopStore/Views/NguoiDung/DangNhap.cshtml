@@ -1,35 +1,242 @@
 ﻿
 @{
     ViewBag.Title = "DangNhap";
-    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+
 }
 
-<h2 style="color: red; text-align: center">@ViewBag.Thongbao</h2>
-<table align="center">
-    <h3 style="text-align:center">ĐĂNG NHẬP </h3>
-    @using (Html.BeginForm())
-    {
-        @Html.ValidationSummary(true)
-        <tr style="height:40px">
-            <td>Tên đăng nhập:</td>
-            <td>
-                @Html.TextBox("TenDN")
-                @ViewData["Loi1"]
-            </td>
-        </tr>
-        <tr style="height:40px">
-            <td style="text-align:right">Mật khẩu:</td>
-            <td>
-                @Html.Password("Matkhau")
-                @ViewData["Loi2"]
-            </td>
-        </tr>
-        <tr style="height:40px">
-            <td></td>
-            <td>
-                <input type="submit" value="Đăng nhập" />
-            </td>
-        </tr>
-    }
-</table>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+
+
+    body {
+        background: #222D32;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .login-box {
+        margin-top: 75px;
+        height: auto;
+        background: #1A2226;
+        text-align: center;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    .login-key {
+        height: 100px;
+        font-size: 80px;
+        line-height: 100px;
+        background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .login-title {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 30px;
+        letter-spacing: 2px;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #ECF0F5;
+    }
+
+    .login-form {
+        margin-top: 25px;
+        text-align: left;
+    }
+
+    input[type=text] {
+        background-color: #1A2226;
+        border: none;
+        border-bottom: 2px solid #0DB8DE;
+        border-top: 0px;
+        border-radius: 0px;
+        font-weight: bold;
+        outline: 0;
+        margin-bottom: 20px;
+        padding-left: 0px;
+        color: #ECF0F5;
+    }
+
+    input[type=password] {
+        background-color: #1A2226;
+        border: none;
+        border-bottom: 2px solid #0DB8DE;
+        border-top: 0px;
+        border-radius: 0px;
+        font-weight: bold;
+        outline: 0;
+        padding-left: 0px;
+        margin-bottom: 20px;
+        color: #ECF0F5;
+    }
+
+    .form-group {
+        margin-bottom: 40px;
+        outline: 0px;
+    }
+
+    .form-control:focus {
+        border-color: inherit;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-bottom: 2px solid #0DB8DE;
+        outline: 0;
+        background-color: #1A2226;
+        color: #ECF0F5;
+    }
+
+    input:focus {
+        outline: none;
+        box-shadow: 0 0 0;
+    }
+
+    label {
+        margin-bottom: 0px;
+    }
+
+    .form-control-label {
+        font-size: 10px;
+        color: #6C6C6C;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .btn-outline-primary {
+        border-color: #0DB8DE;
+        color: #0DB8DE;
+        border-radius: 0px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #0DB8DE;
+            right: 0px;
+        }
+
+    .login-btm {
+        float: left;
+    }
+
+    .login-button {
+        padding-right: 0px;
+        text-align: right;
+        margin-bottom: 25px;
+    }
+
+    .login-text {
+        text-align: left;
+        padding-left: 0px;
+        color: #A2A4A4;
+    }
+
+    .loginbttm {
+        padding: 0px;
+    }
+
+
+    .foot-lnk {
+        text-align: center;
+    }
+
+    .navbar {
+        display: none
+    }
+
+    marquee {
+        color: wheat;
+        /* padding: 50% 50%; */
+        padding-bottom: -17px;
+        /* padding-top: 28px; */
+        padding: 80px;
+        width: 122%;
+    }
+
+    footer {
+        direction: none;
+    }
+</style>
+<h2 style="color: red; text-align: center">@ViewBag.Thongbao</h2>
+
+@*<div class="login">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <div class="heading">
+                <h2>Sign in</h2>
+                <form action="#">
+
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        @Html.TextBox("TenDN")
+                        @ViewData["Loi1"]
+                    </div>
+
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        @Html.Password("Matkhau")
+                        @ViewData["Loi2"]
+                    </div>
+
+                    <button type="submit" class="float">Login</button>
+                </form>
+            </div>
+        }
+    </div>*@
+
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <div class="col-lg-3 col-md-2"></div>
+            <div class="col-lg-6 col-md-8 login-box">
+                <div class="col-lg-12 login-key">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                </div>
+                <div class="col-lg-12 login-title">
+                    Trang đăng nhập
+                </div>
+
+                <div class="col-lg-12 login-form">
+                    <div class="col-lg-12 login-form">
+                        <form>
+
+                            <div class="form-group">
+                                <label class="form-control-label">Tên đăng nhập</label>
+                                @Html.TextBox("TenDN")
+                                @ViewData["Loi1"]
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">Mật khẩu</label>
+                                @Html.Password("Matkhau")
+                                @ViewData["Loi2"]
+                            </div><div class="col-lg-12 loginbttm">
+                                <div class="col-lg-6 login-btm login-text">
+                                    <!-- Error Message -->
+                                </div>
+                                <div class="col-lg-6 login-btm login-button">
+                                    <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2"></div>
+            </div>
+        }
+    </div>
+
+
+
+
+
+
+
+</div>

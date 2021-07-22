@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.0</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +48,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -121,10 +129,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LaptopStoreController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\QLDonDatHangController.cs" />
+    <Compile Include="Controllers\QLHangController.cs" />
+    <Compile Include="Controllers\QLKhachHangController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -137,39 +149,84 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\assets\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\assets\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\assets\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\assets\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\assets\bootstrap\js\npm.js" />
+    <Content Include="Content\assets\css\form-elements.css" />
+    <Content Include="Content\assets\css\style.css" />
+    <Content Include="Content\assets\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\assets\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\assets\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\assets\ico\apple-touch-icon-114-precomposed.png" />
+    <Content Include="Content\assets\ico\apple-touch-icon-144-precomposed.png" />
+    <Content Include="Content\assets\ico\apple-touch-icon-57-precomposed.png" />
+    <Content Include="Content\assets\ico\apple-touch-icon-72-precomposed.png" />
+    <Content Include="Content\assets\ico\favicon.png" />
+    <Content Include="Content\assets\img\backgrounds\1%402x.jpg" />
+    <Content Include="Content\assets\img\backgrounds\1.jpg" />
+    <Content Include="Content\assets\js\jquery-1.11.1.js" />
+    <Content Include="Content\assets\js\jquery-1.11.1.min.js" />
+    <Content Include="Content\assets\js\jquery.backstretch.js" />
+    <Content Include="Content\assets\js\jquery.backstretch.min.js" />
+    <Content Include="Content\assets\js\placeholder.js" />
+    <Content Include="Content\assets\js\scripts.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\shop-homepage.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Hinhsanpham\dell1.jpeg" />
-    <Content Include="Hinhsanpham\dell2.jpg" />
-    <Content Include="Hinhsanpham\dell3.jpg" />
-    <Content Include="Hinhsanpham\hp1.png" />
-    <Content Include="Hinhsanpham\hp2.jpg" />
-    <Content Include="Hinhsanpham\hp3.jpg" />
-    <Content Include="Hinhsanpham\lenovo1.jpg" />
-    <Content Include="Hinhsanpham\lenovo2.jpg" />
-    <Content Include="Hinhsanpham\lenovo3.jpg" />
-    <Content Include="Images2\j1.jpg" />
-    <Content Include="Images2\p1.jpg" />
-    <Content Include="Images2\p2.jpg" />
-    <Content Include="Images2\p3.jpg" />
-    <Content Include="Images2\shopping-cart.png" />
-    <Content Include="logo\acer.jpg" />
-    <Content Include="logo\apple.jpg" />
-    <Content Include="logo\asus.jpg" />
-    <Content Include="logo\dell.jpg" />
-    <Content Include="logo\hp.jpg" />
-    <Content Include="logo\lenovo.jpg" />
-    <Content Include="logo\microsoft.jpg" />
-    <Content Include="logo\msi.jpg" />
+    <Content Include="Images\p1.jpg" />
+    <Content Include="Images\p2.jpg" />
+    <Content Include="Images\p3.jpg" />
+    <Content Include="Images\shopping-cart.png" />
+    <Content Include="logo\acer.png" />
+    <Content Include="logo\asus.png" />
+    <Content Include="logo\dell.png" />
+    <Content Include="logo\hp.png" />
+    <Content Include="logo\lenovo.png" />
+    <Content Include="logo\msi.png" />
     <Content Include="logo\razer.jpg" />
-    <Content Include="logo\Samsung-logo-1-300x150.jpg" />
+    <Content Include="SAN_PHAM\Acer1.jpg" />
+    <Content Include="SAN_PHAM\Acer2.jpg" />
+    <Content Include="SAN_PHAM\Acer3.jpg" />
+    <Content Include="SAN_PHAM\Acer4.jpg" />
+    <Content Include="SAN_PHAM\Acer5.jpg" />
+    <Content Include="SAN_PHAM\Asus-F570ZD-002.jpg" />
+    <Content Include="SAN_PHAM\Asus1.jpg" />
+    <Content Include="SAN_PHAM\Asus2.jpg" />
+    <Content Include="SAN_PHAM\Asus3.jpg" />
+    <Content Include="SAN_PHAM\Asus4.jpg" />
+    <Content Include="SAN_PHAM\Asus5.jpg" />
+    <Content Include="SAN_PHAM\Dell1.jpg" />
+    <Content Include="SAN_PHAM\Dell2.jpg" />
+    <Content Include="SAN_PHAM\Dell3.jpg" />
+    <Content Include="SAN_PHAM\Dell4.jpg" />
+    <Content Include="SAN_PHAM\Dell5.jpg" />
+    <Content Include="SAN_PHAM\HP1.jpg" />
+    <Content Include="SAN_PHAM\HP2.jpg" />
+    <Content Include="SAN_PHAM\HP3.jpg" />
+    <Content Include="SAN_PHAM\HP4.jpg" />
+    <Content Include="SAN_PHAM\HP5.jpg" />
+    <Content Include="SAN_PHAM\Lenovo1.jpg" />
+    <Content Include="SAN_PHAM\Lenovo2.jpg" />
+    <Content Include="SAN_PHAM\Lenovo3.jpg" />
+    <Content Include="SAN_PHAM\Lenovo4.jpg" />
+    <Content Include="SAN_PHAM\Lenovo5.jpg" />
+    <Content Include="SAN_PHAM\MSI1.jpg" />
+    <Content Include="SAN_PHAM\MSI2.jpg" />
+    <Content Include="SAN_PHAM\MSI3.jpg" />
+    <Content Include="SAN_PHAM\MSI4.jpg" />
+    <Content Include="SAN_PHAM\MSI5.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Models\dbQLLaptopStore.dbml">
@@ -177,7 +234,43 @@
       <LastGenOutput>dbQLLaptopStore.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Hinhsanpham\Thumbs.db" />
+    <Content Include="Content\assets\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Content\assets\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\assets\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\assets\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\assets\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\assets\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\assets\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\assets\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\assets\font-awesome\less\animated.less" />
+    <Content Include="Content\assets\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Content\assets\font-awesome\less\core.less" />
+    <Content Include="Content\assets\font-awesome\less\fixed-width.less" />
+    <Content Include="Content\assets\font-awesome\less\font-awesome.less" />
+    <Content Include="Content\assets\font-awesome\less\icons.less" />
+    <Content Include="Content\assets\font-awesome\less\larger.less" />
+    <Content Include="Content\assets\font-awesome\less\list.less" />
+    <Content Include="Content\assets\font-awesome\less\mixins.less" />
+    <Content Include="Content\assets\font-awesome\less\path.less" />
+    <Content Include="Content\assets\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Content\assets\font-awesome\less\stacked.less" />
+    <Content Include="Content\assets\font-awesome\less\variables.less" />
+    <Content Include="Content\assets\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_animated.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_core.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_larger.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_list.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_path.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_stacked.scss" />
+    <Content Include="Content\assets\font-awesome\scss\_variables.scss" />
     <None Include="Models\dbQLLaptopStore.dbml.layout">
       <DependentUpon>dbQLLaptopStore.dbml</DependentUpon>
     </None>
@@ -193,6 +286,85 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="tinymce\tinymce\changelog.txt" />
+    <Content Include="tinymce\tinymce\js\tinymce\license.txt" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\example\dialog.html" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="tinymce\tinymce\js\tinymce\themes\modern\theme.min.js" />
+    <Content Include="tinymce\tinymce\js\tinymce\tinymce.min.js" />
+    <Content Include="tinymce\tinymce\LICENSE.TXT" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -203,7 +375,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -220,6 +391,37 @@
     <Content Include="Views\GioHang\GiohangPartial.cshtml" />
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\GioHang\Xacnhandonhang.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Laptop.cshtml" />
+    <Content Include="Views\Admin\ThemLaptop.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Admin\XoaLaptop.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\QLHang\HANG.cshtml" />
+    <Content Include="Views\QLHang\Create.cshtml" />
+    <Content Include="Views\LaptopStore\Search.cshtml" />
+    <Content Include="tinymce\tinymce\js\tinymce\langs\readme.md" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="tinymce\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Views\QLHang\Details.cshtml" />
+    <Content Include="Views\QLHang\Edit.cshtml" />
+    <Content Include="Views\QLHang\XoaHang.cshtml" />
+    <Content Include="Views\QLKhachHang\KHACHHANG.cshtml" />
+    <Content Include="Views\QLDonDatHang\DON.cshtml" />
+    <Content Include="Views\QLDonDatHang\XoaDon.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser_Dichvu.cshtml" />
+    <Content Include="Views\LaptopStore\Dichvu.cshtml" />
+    <Content Include="Views\LaptopStore\Chinhsachbaohanh.cshtml" />
+    <Content Include="Views\LaptopStore\Chinhsachdoimoi.cshtml" />
+    <Content Include="Views\LaptopStore\Chinhsachvanchuyen.cshtml" />
+    <Content Include="Views\LaptopStore\Lienhe.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser_Sanpham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -239,12 +441,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

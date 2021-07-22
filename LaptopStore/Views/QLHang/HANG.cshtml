@@ -1,0 +1,60 @@
+﻿@model IEnumerable<LaptopStore.Models.HANG>
+
+@{
+    ViewBag.Title = "HANG";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Quản Lý Hãng</h2>
+
+<p>
+    @Html.ActionLink("Thêm", "Create","QLHang")
+</p>
+<table class="table" border="1">
+    <tr>
+        <th style="width:200px">
+            Tên hãng
+        </th>
+        <th style="width:200px; text-align:center">
+            Mã Hãng
+        </th>
+        <th style="width:200px">
+            Logo
+        </th>
+        <th style="width:200px">
+
+        </th>
+    </tr>
+
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenHANG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logo)
+            </th>
+            <th></th>
+        </tr>*@
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenHANG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHang)
+            </td>
+            <td>
+                <img src="@Url.Content("~/logo/" + item.Logo)" height="50%" width="50%" />
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaHang }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.MaHang }) |*@
+                @Html.ActionLink("Xóa", "XoaHang", new { id = item.MaHang })
+            </td>
+        </tr>
+    }
+</table>
+    

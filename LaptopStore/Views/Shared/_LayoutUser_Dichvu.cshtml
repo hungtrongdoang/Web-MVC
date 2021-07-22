@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Laptop Nhà Nhà</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Content/shop-homepage.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+
+<body>
+    <style>
+        .list-group {
+            width: 250px;
+        }
+
+        .list-group-item {
+            width: 230px;
+            align-content: center;
+        }
+
+        .dropdown p {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            background-color: black;
+        }
+    </style>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="@Url.Action("Index","LaptopStore")">TRANG CHỦ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Laptop theo hãng
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @Html.Action("Hang", "LaptopStore")
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Laptop theo nhu cầu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @Html.Action("NhuCau", "LaptopStore")
+                        </div>
+                    </li>
+                    </li>
+
+                    
+                    <li>
+                        <a href="@Url.Action("Lienhe","LaptopStore")">Liên hệ</a>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Chính sách
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("Chinhsachbaohanh","LaptopStore")">Chính sách bảo hành</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Chinhsachdoimoi","LaptopStore")">Chính sách đổi mới</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Chinhsachvanchuyen","LaptopStore")">Chính sách vận chuyển</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item nav-item1">
+                        <a href="@Url.Action("DangKy","NguoiDung")">Đăng ký</a>
+                    </li>
+                    <li class="nav-item nav-item1">
+                    <li>
+                        @{var userSession = Session["TaiKhoan"] as LaptopStore.Models.KHACHHANG;}
+                        @if (userSession != null)
+                        {
+                            <div class="dropdown show">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" margin:inherit">
+                                    @userSession.HoTen
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("DangNhap", "NguoiDung")">Đăng nhập</a>
+                        }
+                    </li>
+
+
+
+
+
+                    <li>
+                        @Html.Action("GiohangPartial", "GioHang")
+                    </li>
+                    <li style="margin-top:15px">
+                        <form name="timkiem" action="@Url.Action("Search","LaptopStore")">
+                            @using (Html.BeginForm(FormMethod.Get))
+                            {
+
+                                <input id="SearchString" name="SearchString" type="text" value="" placeholder="Tìm kiếm....">
+
+                                <button type="submit"><i style="font-size:15px" class="glyphicon glyphicon-search"></i></button>
+
+
+                            }
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            @*<div class="col-md-3">
+                    <div class="list-group">
+                        <h4 style="color:red">LAPTOP THEO HÃNG</h4>
+                        @Html.Action("Hang", "LaptopStore")
+                        <h4 style="color:red">LAPTOP THEO NHU CẦU</h4>
+                        @Html.Action("NhuCau", "LaptopStore")
+                    </div>
+                </div>*@
+
+
+            <div class="col-md-9">
+              
+                <div class="row carousel-holder">
+                    <div class="col-md-13">
+                       
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+
+
+    </div>
+
+    <!-- /.container -->
+
+    <div class="container">
+        <!-- Footer -->
+        <footer>
+            <div class="col-md-3">
+                <h3 font-size=20px style="color:black">Fanpage Laptop Nhà Nhà</h3>
+                <div class="fb-page"
+                     data-tabs="events,messages"
+                     data-href="https://www.facebook.com/Laptop-Nhà-Nhà-100230095677102/"
+                     data-width="380"
+                     data-hide-cover="false"></div>
+            </div>
+           
+            <div class="row">
+                <div class="col-lg-10">
+                    <p>Copyright &copy; Nguyễn Trần Phát & Hoàng Trọng Dũng 2021</p>
+                </div>
+            </div>
+        </footer>
+        <div id="fb-root"></div>
+
+        <!-- Your Plugin chat code -->
+        <div id="fb-customer-chat" class="fb-customerchat">
+        </div>
+
+        <script>
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "100230095677102");
+            chatbox.setAttribute("attribution", "biz_inbox");
+
+            window.fbAsyncInit = function () {
+                FB.init({
+                    xfbml: true,
+                    version: 'v11.0'
+                });
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+    </div>
+    <!-- /.container -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    <!-- Facebook Chat-->
+    <!-- Messenger Plugin chat Code -->
+
+
+</body>
+
+</html>

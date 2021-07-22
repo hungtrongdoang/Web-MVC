@@ -2,10 +2,9 @@
 @model IEnumerable<LaptopStore.Models.LAPTOP>
 @{
     ViewBag.Title = "SPtheohang";
-    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    Layout = "~/Views/Shared/_LayoutUser_Sanpham.cshtml";
 }
-
-<h3 style="text-align: center; color:red">LAPTOP THEO HÃNG</h3>
+<div><h1>Sản phẩm theo hãng</h1></div>
 <div class="row">
     @if (Model != null)
     {
@@ -14,7 +13,7 @@
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
                     <a href="@Url.Action("Details", "LaptopStore", new { id = laptop.MaLAPTOP })">
-                        <img alt="@laptop.TenLAPTOP" src="~/Hinhsanpham/@laptop.Anh" height="300" width="300" />
+                        <img alt="@laptop.TenLAPTOP" src="~/SAN_PHAM/@laptop.Anh" height="300" width="300" />
                     </a>
                     <div>
                         <h4 style="text-align:center">

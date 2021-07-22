@@ -1,0 +1,83 @@
+﻿@model LaptopStore.Models.LAPTOP
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ĐIỀU CHỈNH THÔNG TIN SÁCH</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaLAPTOP)
+
+    <div class="form-group">
+        @Html.Label("Tên Laptop", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.TenLAPTOP,  new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenLAPTOP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenLAPTOP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Giá Bán", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.Giaban, new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Giaban, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Giaban, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            <textarea name="Mota"> </textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.Anh, new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            Chọn ảnh mới
+            <input type="file" name="fileupload" />
+            <img src="@Url.Content("~/SAN_PHAM/" + Model.Anh)" width="120px" /> (ảnh hiện tại)
+            @ViewBag.Thongbao
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Tên hãng", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaHang, new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.DropDownList("MaHang")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Nhu cầu sử dụng", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaNhucau, new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.DropDownList("MaNhuCau")
+        </div>
+    </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

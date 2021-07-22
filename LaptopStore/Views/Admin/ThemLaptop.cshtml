@@ -1,0 +1,135 @@
+﻿@model LaptopStore.Models.LAPTOP
+
+@{
+    ViewBag.Title = "ThemLaptop";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Thêm sản phẩm</h2>
+
+@using (Html.BeginForm("ThemLaptop","Admin",FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>LAPTOP</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+
+        @*@Html.LabelFor(model => model.TenLAPTOP, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        @Html.Label("Tên Laptop", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenLAPTOP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenLAPTOP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.Giaban, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        @Html.Label("Giá", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Giaban, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Giaban, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        @Html.Label("Mô Tả", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea name="Mota">Mô tả thông tin SP</textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            <input type="file" name="fileupload" />
+            @ViewBag.Thongbao
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Mã Hãng", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaHang, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.DropDownList("MaHang")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Mã Nhu Cầu", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaNhucau, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.DropDownList("MaNhuCau")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("CPU", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaNhucau, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CPU, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CPU, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("GPU", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaNhucau, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GPU, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GPU, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("RAM", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaNhucau, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RAM, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Ổ Cứng", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaNhucau, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Hardware, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Hardware, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Màn Hình", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaNhucau, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Man_Hinh, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Man_Hinh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Pin", htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.MaNhucau, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Pin, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Pin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm mới" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index", "Admin")
+    </div>
